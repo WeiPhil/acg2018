@@ -3,8 +3,8 @@
 /************ Main Content Style *****************/
 
 @font-face {
-	font-family: "My Above Font";
-	src: url('fonts/Above.ttf');
+	font-family: "Linowrite";
+	src: url('fonts/linowrite.ttf');
 }
 
 body {
@@ -24,17 +24,14 @@ ul, ol, dl { /* Due to variations between browsers, it's best practices to zero 
 	margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6{
+	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	color: #363636;
+}
+
 h1, h2, h3, h4, h5, h6, p {
 	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
 	padding-right: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
-}
-
-h5 {
-	color: #444;
-	text-align: left;
-	font-size: 12px;
-	line-height: 20px;
-	margin-top: -9px;
 }
 
 a {
@@ -56,15 +53,11 @@ a:visited {
 a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
 	text-decoration: none;	
 }
-.wrapper {
-    /* position:fixed; */
-    overflow-y:scroll;
-    overflow-x:hidden;
-	background-color: #f9f9f9;
-}
 
 .container {
-	min-width: 1500px;
+	position: relative;
+	min-width: 1460px;
+	width: 100%;
 	background: #f9f9f9;
 	margin: 0 auto;
 	padding: 10px 0;
@@ -74,17 +67,9 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 header {
 	background-color: #282828;
 	position: relative;
+	min-width: 1500px;
 	height: 8px;
 	width: 100%;
-}
-
-h2 {
-	font-size: 31px;
-}
-h4 {
-	color: #222;
-	margin-bottom: 7px;
-	font-size: 18px;
 }
 
 #columnLeft {
@@ -110,19 +95,18 @@ h4 {
 #menu li a{
 	color: #363636;
 	text-decoration: none;
-	font-size: 20px;
+	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
 }
 
 #menu li {
-	font-family: "My Above Font", Verdana, Arial, Helvetica, sans-serif;
 	background-color: #f9f9f9;
-	/* color: #363636; */
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	padding: 4px 25px 0px 25px ;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 7px 15px 0px 15px ;
 	float: left;
-	margin-right: 25px;
-	margin-left: 25px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 
 #menu li:hover a, #menu li#actualPageItem a{
@@ -161,7 +145,8 @@ footer {
 	border-top-left-radius:  4px;
 	border-top-right-radius:  4px;
 	height: 80px;
-    width: 100%;
+	width: 100%;
+	min-width: 1500px;
 }
 
 #copywrite {
@@ -170,13 +155,12 @@ footer {
 
 .toTop {
 	position: relative;
-	left : 45%;
-	padding-left: 5px;
+	padding-left: 40%;
 }
 
 .toNextSection {
 	position: relative;
-    left: 85%;
+	padding-left: 80%;
 }
 
 .arrowTop {
@@ -205,13 +189,12 @@ footer {
 }
 
 #nextSection {
-	font-family: "My Above Font", Verdana, Arial, Helvetica, sans-serif;
-	font-size: 18px;
+	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
 	background: #363636;
-	padding: 10px 12px 5px 14px;
+	padding: 8px 12px 6px 14px;
 	color: #f9f9f9cd;
 	border-radius: 5px;
-	
 }
 
 #nextSection:hover {
