@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: "Linowrite Font";
-	src: url('https://weiphil.github.io/fonts/linowrite.ttf');
+	src: url('../fonts/BebasNeue-Regular.otf');
 }
 
 body {
@@ -216,10 +216,10 @@ figcaption{
 
 .sourceFiles {
 	font-family: monospace;
-	background: #42413C;
+	background: rgb(87, 86, 79);
 	border-radius: 3px;
-	padding: 4px 4px 1px 4px;
-	color: #f9f9f9;
+	padding: 3px 5px 1px 5px;
+	color: #ebebeb;
 }
 
 .simpleList {
