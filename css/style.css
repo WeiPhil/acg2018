@@ -212,6 +212,7 @@ figure{
 	/* font-weight: bold; */
 	/* font-style: italic; */
 	display:inline-block;
+	margin-right: 0px; 
 }
 
 figcaption{
@@ -251,41 +252,6 @@ img {
 }
 
 /************ Medium Features content style *****************/
-
-.compareFigure {
-	display: inline-block;
-	text-align: center;
-	height: 450px;
-}
-.img-comp-container {
-	position: relative;
-	height: 100%;  
-	
-  }
-  
-  .img-comp-img {
-	position: absolute;
-	width: auto;
-	height: auto;
-	overflow: hidden;
-  }
-  
-  /* .img-comp-img img {
-	display: inline-block;
-	text-align: center;
-  } */
-  
-  .img-comp-slider {
-	position: absolute;
-	z-index: 9;
-	cursor: ew-resize;
-	/*set the appearance of the slider:*/
-	width: 3px;
-	height: 455px;
-	background-color: #f9f9f9;
-	opacity: 0.5;
-  }
-
 
 /********** Code coloring *************************/
 

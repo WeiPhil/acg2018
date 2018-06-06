@@ -1,0 +1,23 @@
+.ba-slider {
+    position: relative;
+    width: 100%;
+}
+
+.ba-slider .resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 50%;
+}
+
+
+.ba-slider .handle { /* Thin line seperator */
+  position:absolute; 
+  left:50%;
+  top:0;
+  bottom:0;
+  width:4px;
+  background: #f9f9f9;
+  cursor: ew-resize;
+  opacity: 0.5;
+}

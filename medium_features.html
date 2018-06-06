@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Weier &amp; Co</title>
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.png" />
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.3.2.min.js"></script>
-<script src="js/view.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Weier &amp; Co</title>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.png" />
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/view.js"></script>
+
+	<link type="text/css" href="css/before-after.css" rel="stylesheet">
+	<script type="text/javascript" src="js/before-after.js"></script>
 
 </head>
 
@@ -42,7 +45,7 @@
 						<p>
 							I implemented the following medium feature in Nori: 
 							<ul class="simpleList">
-								<li><a href="simple_features.html#environment">Environment Map</li>
+								<li><a href="medium_features.html#environment">Environment Map</a></li>
 							</ul>
 						
 						<br/>
@@ -63,42 +66,44 @@
 
 						</p>
 
-						<!--<div class="clearfix"> -->
-							<figure class="compareFigure">
-								<div class="img-comp-container">
-									<div class="img-comp-img">
-										<img src="images/validation/envmap_ref.png" height="450">
-									</div>
-									<div class="img-comp-img img-comp-overlay">
-										<img src="images/validation/envmap.png" height="450">
-									</div>
-								</div>
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/house.png" alt="Used Envmap" width="490"/>
 								<figcaption>
-									The environment map that is sampled
+									The environment map that was used
 								</figcaption>
 							</figure>
-						<!-- <figure>
-							<img src="images/validation/envmap_ref.png" alt="Reference Envmap" width="450"/>
-							<figcaption>
-								The environment map that is sampled
-							</figcaption>
-						</figure>
+							<figure>
+								<img src="images/validation/house_warptest.png" alt="Chi Square Warp Test" width="490"/>
+								<figcaption>
+									The passing Chi&sup2; Warp Test
+								</figcaption>
+							</figure>
+					
+							<figure id="envmapCompare">
 
-						<figure>
-							<img src="images/validation/envmap.png" alt="Envmap Sampled" width="450"/>
-							<figcaption>
-								The resulting sampling of the environment map
-							</figcaption>
-						</figure> -->
-						
-						<!-- </div>end #clearfix -->
+								<div class="ba-slider">
+									<img src="images/validation/envmap_ref.png" height="490">
+									<div class="resize">
+										<img src="images/validation/envmap.png"  height="490">
+									</div>
+									<span class="handle"></span>
+								</div>
+								<figcaption>
+									Comparison between Nori and Mitsuba's reference Image
+								</figcaption>
+
+							</figure>
+
+						</div><!-- end #clearfix -->
 						
 					</div> <!-- end #mainContentWrapper -->
 					
 					<div class="toTop"><a href="#top"><i class="arrowTop"></i></a> </div><!-- end #toTop -->
 					
 					<div class="toNextSection">
-						<a id="nextSection" href="big_features.html">Medium Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
+						<a id="nextSection" href="big_features.html">Big Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
 					</div><!-- end #toNextSection -->
 
 				</div><!-- end #columnRight -->
@@ -114,5 +119,8 @@
 		</div><!-- end .copywrite -->
 	</footer><!-- end footer -->
 		
+	<script>
+		$('.ba-slider').beforeAfter();
+	</script>
 </body>
 </html>
