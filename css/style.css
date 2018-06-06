@@ -3,8 +3,8 @@
 /************ Main Content Style *****************/
 
 @font-face {
-	font-family: "Linowrite";
-	src: url('fonts/linowrite.ttf');
+	font-family: "Linowrite Font";
+	src: url('https://weiphil.github.io/fonts/linowrite.ttf');
 }
 
 body {
@@ -25,7 +25,7 @@ ul, ol, dl { /* Due to variations between browsers, it's best practices to zero 
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	font-family: "Linowrite Font", Verdana, Arial, Helvetica, sans-serif;
 	color: #363636;
 }
 
@@ -95,7 +95,7 @@ header {
 #menu li a{
 	color: #363636;
 	text-decoration: none;
-	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	font-family: "Linowrite Font", Verdana, Arial, Helvetica, sans-serif;
 	font-size: 18px;
 }
 
@@ -189,7 +189,7 @@ footer {
 }
 
 #nextSection {
-	font-family: "Linowrite", Verdana, Arial, Helvetica, sans-serif;
+	font-family: "Linowrite Font", Verdana, Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	background: #363636;
 	padding: 8px 12px 6px 14px;
