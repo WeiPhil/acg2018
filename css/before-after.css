@@ -8,6 +8,7 @@
     top:0;
     left: 0;
     width: 50%;
+    overflow: hidden;
 }
 
 
@@ -17,6 +18,7 @@
   top:0;
   bottom:0;
   width:4px;
+ 
   background: #f9f9f9;
   cursor: ew-resize;
   opacity: 0.5;
