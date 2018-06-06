@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Weier &amp; Co</title>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.png" />
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.3.2.min.js"></script>
+<script src="js/view.js"></script>
+
+</head>
+
+<body>
+	
+	<header> </header>
+		<div class="container">
+				<div id="columnLeft">
+					<div id="logo">
+						<a href="#top"><img src="images/logo.png" alt="Weier and Co"/></a>
+					<!-- end #logo --></div>
+				<!-- end #columnLeft" --></div>
+				<div id="columnRight">
+					<nav>
+						<ul id="menu">
+							<li><a href="index.html">Introduction</a></li>
+							<li class="divline"></li>
+							<li><a href="simple_features.html">Simple Features</a></li>
+							<li class="divline"></li>
+							<li id="actualPageItem"><a href="medium_features.html">Medium Features</a></li>
+							<li class="divline"></li>
+							<li><a href="big_features.html">Big Features</a></li>
+							<li class="divline"></li>
+							<li><a href="funny_stuff.html">Funny Stuff</a></li>
+							<li class="divline"></li>
+							<li><a href="final.html">Final Image</a></li>
+						</ul>
+					</nav><!-- end nav -->
+
+					<div class="mainContentWrapper">
+					<h1>Medium Features</h1>
+						<p>
+							I implemented the following medium feature in Nori: 
+							<ul class="simpleList">
+								<li><a href="simple_features.html#environment">Environment Map</li>
+							</ul>
+						
+						<br/>
+						The relevant header files are <span class="sourceFiles">/include/nori/hierarchicalwarp.h</span> for the hierarchical warp and some convenience 
+						adjustments have been made in <span class="sourceFiles">/include/nori/emitter.h</span> for the new infinite emitter type.
+						</p>
+
+					<h2 id="environment">Environment Map</h2>
+						
+						<p>
+						Environment map lighting adds a realistic general lighting essential to almost every realistic scene.
+						<br/>
+						The source files of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/hierarchicalwarp.cpp</span></li>
+							<li><span class="sourceFiles">/src/lights/infinite.cpp</span></li>
+						</ul>
+
+						</p>
+
+						<!--<div class="clearfix"> -->
+							<figure class="compareFigure">
+								<div class="img-comp-container">
+									<div class="img-comp-img">
+										<img src="images/validation/envmap_ref.png" height="450">
+									</div>
+									<div class="img-comp-img img-comp-overlay">
+										<img src="images/validation/envmap.png" height="450">
+									</div>
+								</div>
+								<figcaption>
+									The environment map that is sampled
+								</figcaption>
+							</figure>
+						<!-- <figure>
+							<img src="images/validation/envmap_ref.png" alt="Reference Envmap" width="450"/>
+							<figcaption>
+								The environment map that is sampled
+							</figcaption>
+						</figure>
+
+						<figure>
+							<img src="images/validation/envmap.png" alt="Envmap Sampled" width="450"/>
+							<figcaption>
+								The resulting sampling of the environment map
+							</figcaption>
+						</figure> -->
+						
+						<!-- </div>end #clearfix -->
+						
+					</div> <!-- end #mainContentWrapper -->
+					
+					<div class="toTop"><a href="#top"><i class="arrowTop"></i></a> </div><!-- end #toTop -->
+					
+					<div class="toNextSection">
+						<a id="nextSection" href="big_features.html">Medium Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
+					</div><!-- end #toNextSection -->
+
+				</div><!-- end #columnRight -->
+
+			
+
+		</div><!-- end .container -->
+	<footer>
+		<div id="footerImg"></div><!-- end footerImg -->
+		<div id="copywrite">
+			&copy; 2018 Philippe Weier
+			<br />
+		</div><!-- end .copywrite -->
+	</footer><!-- end footer -->
+		
+</body>
+</html>

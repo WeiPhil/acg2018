@@ -3,13 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Weier &amp; Co</title>
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.gif" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.png" />
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/cufon-yui.js"></script>
-		<script src="js/gotham.js"></script>
-		<script>
-			Cufon.replace('h1,h2,h3,h5');
-		</script>
 <script src="js/jquery-1.3.2.min.js"></script>
 <script src="js/view.js"></script>
 
@@ -46,23 +42,22 @@
 						<p>
 							I implemented the following simple features in Nori: 
 							<ul class="simpleList">
-								<li>UV Mapping</li>
-								<li>Spherical Mapping</li>
-								<li>Transparent Textures</li>
-								<li>Texture Superposition</li>
-								<li>Normal Maps</li>
-								<li>Bump Maps</li>
-								<li>Rough Conductors</li>
-								<li>Bridge Modelling</li>
+								<li><a href="simple_features.html#uvMapping">UV Mapping</li>
+								<li><a href="simple_features.html#sphericalMapping">Spherical Mapping</a></li>
+								<li><a href="simple_features.html#transparent">Transparent Textures</a></li>
+								<li><a href="simple_features.html#manipulation">Useful Texture Manipulations</a></li>
+								<li><a href="simple_features.html#normalBump">Normal and Bump Maps</a></li>
+								<li><a href="simple_features.html#conductor">Rough Conductors</a></li>
+								<li><a href="simple_features.html#modelling">Bridge Modelling</a></li>
 							</ul>
 						
 						<br/>
-						The relevant header files are in <span class="sourceFiles">/include/nori/texture.h</span> for all the different textures,
+						The relevant header files are <span class="sourceFiles">/include/nori/texture.h</span> for all the different textures,
 						<span class="sourceFiles">/include/nori/texturemappings.h</span> for the UV and Spherical mappings, <span class="sourceFiles">/include/nori/normalmaps.h</span>
 						and <span class="sourceFiles">/include/nori/bumpmaps.h</span> for the Normal and Bump maps. Some convenience adjustments have been made 
 						in <span class="sourceFiles">/include/nori/bsdf.h</span> for all the different texture types.
 						</p>
-					<h2>UV Texture Mapping</h2>
+					<h2 id="uvMapping">UV Texture Mapping</h2>
 						
 						<p>
 						Textures are a must have to make a scene alive. I implemented simple UV texture mapping, a constant color convenience texture and also a procedural checkerboard texture
@@ -73,38 +68,241 @@
 							<li><span class="sourceFiles">/src/imagetexture.cpp</span></li>
 							<li><span class="sourceFiles">/src/constant.cpp</span></li>
 							<li><span class="sourceFiles">/src/checkerboard.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/diffuse.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/microfacet.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/metal.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/roughmetal.cpp</span></li>
 						</ul>
-					
-						
 						<br/>
+						All the bsdfs stated handle the textures in the function <pre class="prettyprint lang-cc">Color3f handleTextures(BSDFQueryRecord &bRec,bool sampling) const</pre>
+						
 
 						</p>
 						<div class="clearfix">
-						<figure id="woodTexture">
-							<img src="images/validation/uvMapping.png" alt="Wood Texture" height="400"/>
+						<figure>
+							<img src="images/validation/uvMapping.png" alt="Wood Texture" width="450"/>
 							<figcaption>
-								A simple wood texture
+								A simple wood texture applied to a square
 							</figcaption>
 						</figure>
 
-						<figure id="checkerboard">
-							<img src="images/validation/checkerboard.png" alt="Checkerboard Texture" height="400"/>
-							<figcaption style="padding-left: 20px">
-								A procedural checkerboard texture
+						<figure>
+							<img src="images/validation/checkerboard.png" alt="Checkerboard Texture" width="450"/>
+							<figcaption>
+								A procedural checkerboard texture applied to a square
 							</figcaption>
 						</figure>
 						
 						
 						</div><!-- end #clearfix -->
 						
+					<h2 id="sphericalMapping">Spherical Mapping</h2>
+						
+						<p>
+						Hereafter you can see two examples of modells on which I used spherical mapping. This mapping has the usefull property that it can be applied
+						to a mesh that has no UV coordinates and still gives good results on <i>roundish</i> meshes. 
+						<br/>
+						There are no other source files as the ones used in the UV mapping case.
+
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/sphericalSphere.png" alt="Spherical Mapping on a Sphere" width="450"/>
+								<figcaption>
+									A spherical Mapping on a Sphere
+								</figcaption>
+							</figure>
+
+							<figure >
+								<img src="images/validation/sphericalBunny.png" alt="Spherical Mapping on a Sphere" width="450"/>
+								<figcaption>
+									A spherical Mapping on the Bunny
+								</figcaption>
+							</figure>
+						</div><!-- end #clearfix -->
 					
+
+					<h2 id="transparent">Transparent Textures</h2>
+						
+						<p>
+						The next feature I implemented was exclusively for my project since I needed a way to efficiently render a lot of models in my scene.
+						My strategy was actually based on alpha planes in correlation with normal maps to give it a realistic 3D look.
+						<br/>
+						The source file of interest are the following:
+						
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/imagetexture.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/diffuse.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/metal.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/roughmetal.cpp</span></li>
+						</ul>
+						<br/>
+						All the bsdfs stated handle the textures in the function <pre class="prettyprint">Color3f handleTextures(BSDFQueryRecord &bRec,bool sampling) const</pre> and
+						we indicate to Nori that a texture is transparent by setting the texture filter to <pre class="prettyprint">TEXTURE_TRANSPARENT</pre>
+
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/transparent.png" alt="A transparent texture" width="450"/>
+								<figcaption>
+									A texture with an alpha channel applied to a square
+								</figcaption>
+							</figure>	
+						</div><!-- end #clearfix -->
+
+					<h2 id="manipulation">Useful Texture Manipulations</h2>
+						
+						<p>
+						For convenience I added different ways of combining textures. I can displace, scale, blend and superpose textures with the help of
+						a so called Z-index to pile up the textures. Textures can be blended with other textures that are on the same level by either avereging
+						or multiplying them with each other. An alpha channel can also be specified so that the texture is partially transparent.
+						<br/>
+						The source file of interest are the following:
+						
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/imagetexture.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/diffuse.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/microfacet.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/metal.cpp</span></li>
+							<li><span class="sourceFiles">/src/bsdfs/roughmetal.cpp</span></li>
+						</ul>
+						<br/>
+						All the bsdfs stated handle the textures in the function <pre class="prettyprint">Color3f handleTextures(BSDFQueryRecord &bRec,bool sampling) const</pre>.
+
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/complex_texture.png" alt="A complex texture superposition" width="450"/>
+								<figcaption>
+									A superposition of a constant texture and two custom textures displaced and scaled
+								</figcaption>
+							</figure>	
+						</div><!-- end #clearfix -->
+
+						
+					
+					<h2 id="normalBump">Normal and Bump Maps</h2>
+						
+						<p>
+						Normal maps are essential to add some details to the scene. I implemented both normal and bump maps to add flexibility when creating a scene.
+						<br/>
+						The source file of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/textures/bumpmap.cpp</span></li>
+							<li><span class="sourceFiles">/src/textures/normalmap.cpp</span></li>
+						</ul>
+
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/without.png" alt="A diffuse square" width="450"/>
+								<figcaption>
+									A square with a diffuse material without bump mapping
+								</figcaption>
+							</figure>	
+							
+							<figure>
+								<img src="images/validation/bumpmap.png" alt="Bump mapped" width="450"/>
+								<figcaption>
+									and with bump mapping 
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/without.png" alt="A diffuse square" width="450"/>
+								<figcaption>
+									A square with a diffuse material without normal mapping
+								</figcaption>
+							</figure>	
+							
+							<figure>
+								<img src="images/validation/normalmap.png" alt="Normal mapped" width="450"/>
+								<figcaption>
+									and with a normal mapping
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+
+
+
+					<h2 id="conductor">Rough Conductors</h2>
+						
+						<p>
+						As my scene contains many different types of metals I needed a simple rough metal bsdf.
+						<br/>
+						The source file of interest are the following:
+						
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/bsdfs/roughmetal.cpp</span></li>
+						</ul>
+					
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/really_rough_conductor.png" alt="Really rough conductor" width="450"/>
+								<figcaption>
+									A really rough conductor
+								</figcaption>
+							</figure>	
+
+							<figure>
+								<img src="images/validation/almost_not_rough_conductor.png" alt="Almost non-rough conductor" width="450"/>
+								<figcaption>
+									An almost non-rough conductor
+								</figcaption>
+							</figure>	
+
+						</div><!-- end #clearfix -->
+
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/roughmetal.png" alt="The passing Chi Square Warp Test" />
+								<figcaption>
+									The passing Chi&sup2; Warp Test
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+					<h2 id="modelling">Bridge Modelling</h2>
+						
+						<p>
+						As I did not found any convincing old wooden bridge model I modelled one myself with the help of Blender.
+						
+						</p>
+						<div class="clearfix">
+							<figure>
+								<img src="images/validation/modelling1.png" alt="Model Overall View" width="900"/>
+								<figcaption>
+									An overall view of my bridge model
+								</figcaption>
+							</figure>	
+
+							<figure>
+								<img src="images/validation/modelling2.png" alt="Model Close up View" width="900"/>
+								<figcaption>
+									A close up view of the model
+								</figcaption>
+							</figure>	
+
+						</div><!-- end #clearfix -->
+
+
+
+
+
 
 					</div> <!-- end #mainContentWrapper -->
 					
-					<div class="toTop"><div class="circle"> <a href="#top"><i class="arrowTop"></i></a> </div></div><!-- end #toTop -->
+					<div class="toTop"><a href="#top"><i class="arrowTop"></i></a> </div><!-- end #toTop -->
 					
 					<div class="toNextSection">
-						<a id="nextSection" href="simple_features.html">Simple Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
+						<a id="nextSection" href="medium_features.html">Medium Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
 					</div><!-- end #toNextSection -->
 
 				</div><!-- end #columnRight -->
@@ -120,6 +318,5 @@
 		</div><!-- end .copywrite -->
 	</footer><!-- end footer -->
 		
-		<script> Cufon.now(); </script>
 </body>
 </html>

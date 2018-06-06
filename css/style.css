@@ -30,8 +30,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
-	padding-right: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+	margin-top: 0;	 /*removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
 }
 
 a {
@@ -56,7 +55,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 
 .container {
 	position: relative;
-	min-width: 1460px;
+	min-width: 1500px;
 	width: 100%;
 	background: #f9f9f9;
 	margin: 0 auto;
@@ -79,8 +78,8 @@ header {
 }
 
 #columnRight {
+	width: 1220px;
 	margin-left: 280px;
-	margin-right: 30px;
 }
 #logo {
 	padding: 30px;
@@ -89,7 +88,7 @@ header {
 #menu {
 	list-style-type: none;
 	height: 100%;
-	margin-left: 10px;
+	margin-left: 180px;
 }
 
 #menu li a{
@@ -129,11 +128,12 @@ nav {
 	padding-top: 25px;
 	height: 32px;
 	border-bottom: 1px solid #666666;
+	margin-right: 100px;
 }
 
 .mainContentWrapper {
 	padding-top: 80px;
-	padding-right: 20px;
+	padding-right: 142px;
 	min-height: 500px;
 }
 
@@ -154,14 +154,15 @@ footer {
 }
 
 .toTop {
-	position: relative;
-	padding-left: 40%;
+	margin-right: 100px;
+	text-align: center;
 }
 
 .toNextSection {
-	position: relative;
-	padding-left: 80%;
+	margin-right: 10px;
+	text-align: right;
 }
+
 
 .arrowTop {
     border: solid  #363636;
@@ -195,6 +196,7 @@ footer {
 	padding: 8px 12px 6px 14px;
 	color: #f9f9f9cd;
 	border-radius: 5px;
+	text-align: right;
 }
 
 #nextSection:hover {
@@ -203,22 +205,26 @@ footer {
 
 .clearfix {
 	overflow: auto;
+	text-align: center;
 }
 
 figure{
-	font-style: italic;
+	/* font-weight: bold; */
+	/* font-style: italic; */
+	display:inline-block;
 }
 
 figcaption{
+	padding-top: 10px;
 	padding-left: 30px;
 	padding-bottom: 20px;
 }
 
 .sourceFiles {
 	font-family: monospace;
-	background: rgb(87, 86, 79);
+	background: #2e3440ff;
 	border-radius: 3px;
-	padding: 3px 5px 1px 5px;
+	padding: 3px 5px 2px 5px;
 	color: #ebebeb;
 }
 
@@ -226,16 +232,100 @@ figcaption{
 	padding-left: 40px;
 }
 
-/************ Introduction content style *****************/
-
-#intro1 ,#intro2{
-	display:inline-block
+img {
+	border-radius: 2px;
+	border: 2px solid #2e3440ff;
 }
+
+/************ Introduction content style *****************/
 
 /************ Simple Features content style *****************/
 
-#woodTexture, #checkerboard{
-	display:inline-block
+.simpleList a:visited {
+	color: #42413C;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 
+.simpleList a:hover {
+	font-weight: 500;
+}
 
+/************ Medium Features content style *****************/
+
+.compareFigure {
+	display: inline-block;
+	text-align: center;
+	height: 450px;
+}
+.img-comp-container {
+	position: relative;
+	height: 100%;  
+	
+  }
+  
+  .img-comp-img {
+	position: absolute;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+  }
+  
+  /* .img-comp-img img {
+	display: inline-block;
+	text-align: center;
+  } */
+  
+  .img-comp-slider {
+	position: absolute;
+	z-index: 9;
+	cursor: ew-resize;
+	/*set the appearance of the slider:*/
+	width: 3px;
+	height: 455px;
+	background-color: #f9f9f9;
+	opacity: 0.5;
+  }
+
+
+/********** Code coloring *************************/
+
+pre.prettyprint { 
+	border-radius: 3px;
+	margin: 0;
+	padding: 1px 5px;
+	display: inline-block; 
+	background-color: #2e3440ff; 
+	border: 0;
+}
+pre .nocode { background-color: none; color: #000 }
+pre .str { color: #4C566A } /* string  */
+pre .kwd { color: #8FBCBB }
+pre .com { color: #4C566A } /* comment  */
+pre .typ { color: #8FBCBB } /* type  */
+pre .lit { color: #cd5c5c } /* literal */
+pre .pun { color: #88C0D0 }    /* punctuation */
+pre .pln { color: #ebebeb }    /* plaintext */
+pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+pre .atv { color: #ffa0a0 } /* attribute value - pink */
+pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+@media print {
+  pre.prettyprint { background-color: none }
+  pre .str, code .str { color: #060 }
+  pre .kwd, code .kwd { color: #006; font-weight: bold }
+  pre .com, code .com { color: #600; font-style: italic }
+  pre .typ, code .typ { color: #404; font-weight: bold }
+  pre .lit, code .lit { color: #044 }
+  pre .pun, code .pun { color: #440 }
+  pre .pln, code .pln { color: #000 }
+  pre .tag, code .tag { color: #006; font-weight: bold }
+  pre .atn, code .atn { color: #404 }
+  pre .atv, code .atv { color: #060 }
+}
