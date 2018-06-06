@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Weier &amp; Co</title>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.gif" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/cufon-yui.js"></script>
+		<script src="js/gotham.js"></script>
+		<script>
+			Cufon.replace('h1,h2,h3,h5');
+		</script>
+<script src="js/jquery-1.3.2.min.js"></script>
+<script src="js/view.js"></script>
+
+</head>
+
+<body>
+
+	
+	<div class="wrapper">
+		<header> </header>
+		<div class="container">
+				<div id="columnLeft">
+					<div id="logo">
+						<a href="#top"><img src="images/logo.png" alt="Weier and Co"/></a>
+					<!-- end #logo --></div>
+				<!-- end #columnLeft" --></div>
+				<div id="columnRight">
+					<nav>
+						<ul id="menu">
+							<li><a href="index.html">Introduction</a></li>
+							<li class="divline"></li>
+							<li id="actualPageItem"><a href="simple_features.html">Simple Features</a></li>
+							<li class="divline"></li>
+							<li><a href="medium_features.html">Medium Features</a></li>
+							<li class="divline"></li>
+							<li><a href="big_features.html">Big Features</a></li>
+							<li class="divline"></li>
+							<li><a href="funny_stuff.html">Funny Stuff</a></li>
+							<li class="divline"></li>
+							<li><a href="final.html">Final Image</a></li>
+						</ul>
+					</nav><!-- end nav -->
+
+					<div class="mainContentWrapper">
+					<h1>Simple Features</h1>
+						<p>
+							I implemented the following simple features in Nori: 
+							<ul class="simpleList">
+								<li>UV Mapping</li>
+								<li>Spherical Mapping</li>
+								<li>Transparent Textures</li>
+								<li>Texture Superposition</li>
+								<li>Normal Maps</li>
+								<li>Bump Maps</li>
+								<li>Rough Conductors</li>
+								<li>Bridge Modelling</li>
+							</ul>
+						
+						<br/>
+						The relevant header files are in <span class="sourceFiles">/include/nori/texture.h</span> for all the different textures,
+						<span class="sourceFiles">/include/nori/texturemappings.h</span> for the UV and Spherical mappings, <span class="sourceFiles">/include/nori/normalmaps.h</span>
+						and <span class="sourceFiles">/include/nori/bumpmaps.h</span> for the Normal and Bump maps. Some convenience adjustments have been made 
+						in <span class="sourceFiles">/include/nori/bsdf.h</span> for all the different texture types.
+						</p>
+					<h3>UV Texture Mapping</h3>
+						
+						<p>
+						Textures are a must have to make a scene alive. I implemented simple UV texture mapping, a constant color convenience texture and also a procedural checkerboard texture
+						to have some nice looking testing surface.
+						<br/>
+						The source files of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/imagetexture.cpp</span></li>
+							<li><span class="sourceFiles">/src/constant.cpp</span></li>
+							<li><span class="sourceFiles">/src/checkerboard.cpp</span></li>
+						</ul>
+					
+						
+						<br/>
+
+						</p>
+						<div class="clearfix">
+						<figure id="woodTexture">
+							<img src="images/validation/uvMapping.png" alt="Wood Texture" height="400"/>
+							<figcaption>
+								A simple wood texture
+							</figcaption>
+						</figure>
+
+						<figure id="checkerboard">
+							<img src="images/validation/checkerboard.png" alt="Checkerboard Texture" height="400"/>
+							<figcaption style="padding-left: 20px">
+								A procedural checkerboard texture
+							</figcaption>
+						</figure>
+						
+						
+						</div><!-- end #clearfix -->
+						
+					
+
+					</div> <!-- end #mainContentWrapper -->
+					
+					<div class="toTop"><div class="circle"> <a href="#top"><i class="arrowTop"></i></a> </div></div><!-- end #toTop -->
+					
+					<div class="toNextSection">
+						<a id="nextSection" href="simple_features.html">Simple Features&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
+					</div><!-- end #toNextSection -->
+
+				</div><!-- end #columnRight -->
+
+			
+
+		</div><!-- end .container -->
+		<footer>
+			<div id="footerImg"></div><!-- end footerImg -->
+			<div id="copywrite">
+				&copy; 2018 Philippe Weier
+				<br />
+			</div><!-- end .copywrite -->
+		</footer><!-- end footer -->
+	</div><!-- end wrapper-->
+		
+		<script> Cufon.now(); </script>
+</body>
+</html>
