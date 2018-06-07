@@ -53,17 +53,26 @@
   }
 
   // Define plugin
-  $.fn.beforeAfter = function() {
+  $.fn.beforeAfter = function(handler,resize) {
     var cur = this;
+
     // Adjust the slider
     // Bind dragging events
     drags(cur.find('.handle'), cur.find('.resize'), cur);
 
+    drags(cur.find(handler), cur.find(resize), cur);
+
     // Update sliders on resize. 
-    // Because we all do this: i.imgur.com/YkbaV.gif
     $(window).resize(function(){
-      var width = cur.width()+'px';
+      var width = cur.find('img').css('width');
       cur.find('.resize img').css('width', width);
     });
+    
+    // Update sliders on resize. 
+    $(window).resize(function(){
+      var width = cur.find('img').css('width');
+      cur.find(resize + ' img').css('width', width);
+    });
+
   }
 }(jQuery));

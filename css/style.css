@@ -219,6 +219,7 @@ figcaption{
 	padding-top: 10px;
 	padding-left: 30px;
 	padding-bottom: 20px;
+	text-align: left;
 }
 
 .sourceFiles {
@@ -252,6 +253,33 @@ img {
 }
 
 /************ Medium Features content style *****************/
+
+/************ Big Features content style *****************/
+
+.ba-slider0, .ba-slider1, .ba-slider2, .ba-slider3 {
+    position: relative;
+    width: 100%;
+}
+
+.ba-slider0 .resize0, .ba-slider1 .resize1, .ba-slider2 .resize2, .ba-slider3 .resize3 {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
+
+.ba-slider0 .handle0, .ba-slider1 .handle1, .ba-slider2 .handle2, .ba-slider3 .handle3 { /* Thin line seperator */
+    position:absolute; 
+    left:50%;
+    top:0;
+    bottom:0;
+    width:4px;
+
+    background: #f9f9f9;
+    cursor: ew-resize;
+    opacity: 0.5;
+}
 
 /********** Code coloring *************************/
 

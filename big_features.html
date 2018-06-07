@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Weier &amp; Co</title>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/logoSite.png" />
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/view.js"></script>
+
+	<link type="text/css" href="css/before-after.css" rel="stylesheet">
+	<script type="text/javascript" src="js/before-after.js"></script>
+
+</head>
+
+<body>
+	
+	<header> </header>
+		<div class="container">
+				<div id="columnLeft">
+					<div id="logo">
+						<a href="#top"><img src="images/logo.png" alt="Weier and Co"/></a>
+					<!-- end #logo --></div>
+				<!-- end #columnLeft" --></div>
+				<div id="columnRight">
+					<nav>
+						<ul id="menu">
+							<li><a href="index.html">Introduction</a></li>
+							<li class="divline"></li>
+							<li><a href="simple_features.html">Simple Features</a></li>
+							<li class="divline"></li>
+							<li><a href="medium_features.html">Medium Features</a></li>
+							<li class="divline"></li>
+							<li id="actualPageItem"><a href="big_features.html">Big Features</a></li>
+							<li class="divline"></li>
+							<li><a href="funny_stuff.html">Funny Stuff</a></li>
+							<li class="divline"></li>
+							<li><a href="final.html">Final Image</a></li>
+						</ul>
+					</nav><!-- end nav -->
+
+					<div class="mainContentWrapper">
+					<h1>Big Features</h1>
+						<p>
+							I implemented the following features related to the Volumetric Path Tracer in Nori: 
+							<ul class="simpleList">
+								<li><a href="big_features.html#hg">Henyey-Greenstein Phase Function</a></li>
+								<li><a href="big_features.html#homogeneous">Homogeneous Media</a></li>
+								<li><a href="big_features.html#heterogeneous">Heterogenous Media</a></li>
+							</ul>
+						
+						<br/>
+						The relevant files related to the volumetric path tracer are the following: 
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/integrators/volpath.cpp</span></li>
+							<li><span class="sourceFiles">/include/nori/medium.h</span></li>
+							<li><span class="sourceFiles">/include/nori/phase.h</span></li>
+							<li><span class="sourceFiles">/include/nori/accel.h</span></li>
+						</ul>
+						<br/>
+						Note that I also added the direct lighting and furnace tests to the continuous integrations for the volumetric path tracer integrator.
+						
+						</p>
+
+					<h2 id="hg">Henyey-Greenstein Phase Function</h2>
+						
+						<p>
+						I implemented the Henyey-Greenstein phase function for homogeneous and heterogeneous medias even if I finally only used the isomorphic 
+						equivalent case.
+						<br/>
+						The source files of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/phases/hg.cpp</span></li>
+						</ul>
+
+						</p>
+
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/hg.png" alt="Chi Square Warp Test" width="980"/>
+								<figcaption>
+										The passing Chi&sup2; Warp Test
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+					<h2 id="homogeneous">Homogeneous Media</h2>
+						
+						<p>
+						As I wanted to render smoke I first had to implement the homogeneous case before the heterogeneous one. My implementation is based on PBRT's
+						implementation but also includes some logic from Mitsuba like the <pre class="prettyprint lang-cc">struct MediumQueryRecord</pre> and the 
+						<pre class="prettyprint lang-cc">struct PhaseFunctionQueryRecord</pre>
+
+						<br/>
+						The source files of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/src/mediums/homogeneous.cpp</span></li>
+						</ul>
+
+						</p>
+
+						<div class="clearfix"> 
+							
+							<figure id="envmapCompare">
+								<p style="text-align: left; padding-left: 20px;">
+										Scattering coefficient only
+								</p>
+									
+								<div class="ba-slider0">
+									<img src="images/validation/homogeneous/sigmaA08_ref.png" width="490">
+									<div class="resize0">
+										<img src="images/validation/homogeneous/sigmaA08.png" width="490">
+									</div>
+									<span class="handle0"></span>
+								</div>
+								<figcaption>
+										<pre class="prettyprint lang-cc">SigmaS: rgb(1.0,1.0,1.0)&nbsp;&nbsp;&nbsp;&nbsp;SigmaA: rgb(0.0,0.0,0.0)</pre>
+								</figcaption>
+
+							</figure>
+						
+							<figure id="envmapCompare">
+								<p style="text-align: left; padding-left: 20px;">
+									Absorption coefficient only
+								</p>
+
+								<div class="ba-slider1">
+									<img src="images/validation/homogeneous/sigmaS08_ref.png" width="490">
+									<div class="resize1">
+										<img src="images/validation/homogeneous/sigmaS08.png" width="490">
+									</div>
+									<span class="handle1"></span>
+								</div>
+								<figcaption>
+									<pre class="prettyprint lang-cc">SigmaS: (0.0,0.0,0.0)&nbsp;&nbsp;&nbsp;&nbsp;SigmaA: (1.0,1.0,1.0)</pre>
+								</figcaption>
+
+							</figure>
+						
+						</div><!-- end #clearfix -->
+						
+						<div class="clearfix"> 
+
+							<figure id="envmapCompare">
+
+								<p style="text-align: left; padding-left: 20px;">
+										Mixed scattering and absorption
+								</p>
+
+								<div class="ba-slider2">
+									<img src="images/validation/homogeneous/mixed_ref.png" width="490">
+									<div class="resize2">
+										<img src="images/validation/homogeneous/mixed.png" width="490">
+									</div>
+									<span class="handle2"></span>
+								</div>
+								<figcaption>
+									<pre class="prettyprint lang-cc">SigmaS: (0.8 0.2 0.8)&nbsp;&nbsp;&nbsp;&nbsp;SigmaA: (0.2 0.8 0.2)</pre>
+								</figcaption>
+
+							</figure>
+
+							<figure id="envmapCompare">
+								<p style="text-align: left; padding-left: 20px;">
+									With dielectric boundary
+								</p>
+
+								<div class="ba-slider3">
+									<img src="images/validation/homogeneous/boundary_ref.png" width="490">
+									<div class="resize3">
+										<img src="images/validation/homogeneous/boundary.png" width="490">
+									</div>
+									<span class="handle3"></span>
+								</div>
+								<figcaption>
+									<pre class="prettyprint lang-cc">SigmaS: (0.8 0.2 0.8)&nbsp;&nbsp;&nbsp;&nbsp;SigmaA: (0.2 0.8 0.2)</pre>
+								</figcaption>
+	
+							</figure>
+
+
+						</div><!-- end #clearfix -->
+					
+					<h2 id="heterogeneous">Heterogenous Media</h2>
+						
+						<p>
+						Once the homogeneous was implemented the hard part of the heterogeneous case was to actually get the data. I rewrote a source file
+						from blender and then wrote a little python script to get the data from Blender's simulation. 
+						<br/>
+						The source files of interest are the following:
+						<ul class="simpleList">
+							<li><span class="sourceFiles">/scripts/smokeDataExtractor.py</span></li>
+							<li><span class="sourceFiles">/scripts/pointcache.c</span></li>
+							<li><span class="sourceFiles">/include/nori/voxelgrid.cpp</span></li>
+						</ul>
+						<br/>
+						To run the script, first replace the <span class="sourceFiles">pointcache.c</span> file in Blender's source code with my modified one and then recompile it. Then
+						just run any smoke simulation you want in Blender and run <pre class="prettyprint lang-cc">python3 smokeDataExtractor.py path/to/smokeSimulationData</pre> from which
+						you will get two output files called <pre class="prettyprint lang-cc">path/to/smokeSimulationData.density</pre> and <pre class="prettyprint lang-cc">path/to/smokeSimulationData.albedo</pre>
+						which you can then use in Nori.
+						</p>
+
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/fromSide.png" alt="Smoke in Blender" width="290"/>
+								<figcaption>
+									A 2D cut from the parsed smoke data
+								</figcaption>
+							</figure>
+							<figure style="padding-left: 160px;">
+								<img src="images/validation/fromTop.png" alt="Chi Square Warp Test" height="290"/>
+								<figcaption>
+									The simulated smoke seen from the top
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/blenderSmoke.png" alt="Smoke in Blender" height="340"/>
+								<figcaption>
+									The result of the smoke simulation in Blender
+								</figcaption>
+							</figure>
+							<figure>
+								<img src="images/validation/volpath_heterogeneous.png" alt="Chi Square Warp Test" height="340"/>
+								<figcaption>
+									The same smoke rendered in Nori
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+						
+					</div> <!-- end #mainContentWrapper -->
+					
+					<div class="toTop"><a href="#top"><i class="arrowTop"></i></a> </div><!-- end #toTop -->
+					
+					<div class="toNextSection">
+						<a id="nextSection" href="funny_stuff.html">Funny Stuff&nbsp;&nbsp;&nbsp;<i class="arrowNext"></i></a>
+					</div><!-- end #toNextSection -->
+
+				</div><!-- end #columnRight -->
+
+			
+
+		</div><!-- end .container -->
+	<footer>
+		<div id="footerImg"></div><!-- end footerImg -->
+		<div id="copywrite">
+			&copy; 2018 Philippe Weier
+			<br />
+		</div><!-- end .copywrite -->
+	</footer><!-- end footer -->
+		
+	<script>
+		$('.ba-slider0').beforeAfter('.handle0','.resize0');
+		$('.ba-slider1').beforeAfter('.handle1','.resize1');
+		$('.ba-slider2').beforeAfter('.handle2','.resize2');
+		$('.ba-slider3').beforeAfter('.handle3','.resize3');
+	</script>
+</body>
+</html>
