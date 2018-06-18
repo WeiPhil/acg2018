@@ -187,8 +187,8 @@
 					<h2 id="heterogeneous">Heterogenous Media</h2>
 						
 						<p>
-						Once the homogeneous was implemented the hard part of the heterogeneous case was to actually get the data. I rewrote a source file
-						from blender and then wrote a little python script to get the data from Blender's simulation. 
+						Once the homogeneous was implemented there were actually two main steps: Implement the heteregenous media in Nori and maybe
+						 the harder part, getting the data which we want to render.
 						<br/>
 						The source files of interest are the following:
 						<ul class="simpleList">
@@ -196,11 +196,16 @@
 							<li><span class="sourceFiles">/scripts/pointcache.c</span></li>
 							<li><span class="sourceFiles">/include/nori/voxelgrid.cpp</span></li>
 						</ul>
+						
 						<br/>
+						I will begin by the end and explain how I actually got the data for the heteregenous media
 						To run the script, first replace the <span class="sourceFiles">pointcache.c</span> file in Blender's source code with my modified one and then recompile it. Then
 						just run any smoke simulation you want in Blender and run <pre class="prettyprint lang-cc">python3 smokeDataExtractor.py path/to/smokeSimulationData</pre> from which
 						you will get two output files called <pre class="prettyprint lang-cc">path/to/smokeSimulationData.density</pre> and <pre class="prettyprint lang-cc">path/to/smokeSimulationData.albedo</pre>
 						which you can then use in Nori.
+						<br/>
+						<br/>
+						You can freely download my script <a href="documents/smokeDataExtractor.py" download><b>here</b></a>.
 						</p>
 
 						<div class="clearfix">
@@ -236,8 +241,70 @@
 							</figure>
 
 						</div><!-- end #clearfix -->
+
+						<p>
+							To implement the heteregenous media I used a technique called <i>Woodcock Tracking</i> which in other words simplifies the problem of the heterogenous medias to 
+							the homogeneous case and has the advantage of beeing an unbiased technique compared to <i>Ray Marching</i> for example. The problem with the heterogenous case is that the absorption
+							and the scattering coefficient are no more homogeneous. A "brute-force" way would be to seperate our volume in piecewise homogeneous volumes but this technique is rather inefficient especially
+							if there are many medium boundaries. A smarter and more efficient way is to <i>simulate</i> a homogeneous media by adding a fictious medium which fills the volume bounds in a way that the whole
+							volume can be seen as a homogeneous media. (<i>Images from Eurographics 2018 slides about Monte Carlo Sampling in Volumetric Media, Jan Novak</i>)
+						</p>
+
+							<div class="clearfix">
+							
+								<figure>
+									<img src="images/validation/homogenization.png" alt="Homogenization" height="230"/>
+									<figcaption>
+										Homogenization 
+									</figcaption>
+								</figure>
+								<figure>
+									<img src="images/validation/delta_tracking.png" alt="Delta-Tracking" height="230"/>
+									<figcaption>
+										Stochastic sampling to estimate free path
+									</figcaption>
+								</figure>
+	
+							</div><!-- end #clearfix -->
+
+						<p>
+							We can then estimate the distance travelled by the light until a real collision occurs using stochastic sampling so that we can sample a distance and check if there is a collision with 
+							a real particle or a fictious particle in which case we continue and sample a new distance which we add to the already sampled distance. Alternatively from using the albedo grid from the simulation
+							we can also set the albedo to a constant value returning to the homogeneous case but preserving the custom shape of the volume.
+						</p>
+
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/volpath_heterogeneousConst02.png" alt="Volume with 0.2 albedo" height="340"/>
+								<figcaption>
+									Volume rendered with a constant albedo of 0.2
+								</figcaption>
+							</figure>
+							<figure>
+								<img src="images/validation/volpath_heterogeneousConst08.png" alt="Volume with 0.8 albedo" height="340"/>
+								<figcaption>
+										Volume rendered with a constant albedo of 0.8
+								</figcaption>
+							</figure>
+
+						</div><!-- end #clearfix -->
+
+						<div class="clearfix">
+							
+							<figure>
+								<img src="images/validation/realistic_cloud.png" alt="Realistic Cloud" width="900"/>
+								<figcaption>
+									A more realistic looking cloud with an overall lower density rendered at 1024 samples per pixel
+								</figcaption>
+							</figure>
+		
+						</div><!-- end #clearfix -->
+						
 						
 					</div> <!-- end #mainContentWrapper -->
+
+					
 					
 					<div class="toTop"><a href="#top"><i class="arrowTop"></i></a> </div><!-- end #toTop -->
 					
