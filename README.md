@@ -1,2 +1,3 @@
-# WeiPhil.github.io
-Portfolio Website
+# Advanced Computer Graphics Project Website
+
+At <https://weiphil.github.io/acg2018/>
